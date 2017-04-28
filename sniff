@@ -50,10 +50,21 @@ if ($config['allow-risky']) {
     $options .= ' --allow-risky=yes';
 }
 
-$command = sprintf(
-    "vendor/bin/php-cs-fixer fix %s %s --using-cache=no --rules=%s",
+if (file_exists('vendor/bin/php-cs-fixer')) {
+    // Installed in vendor sub-directory
+    $command = 'vendor/bin/php-cs-fixer';
+} elseif (file_exists(__DIR__.'/php-cs-fixer')) {
+    // When sniff is installed as a dependency, along with php-cs-fixer in vendor/bin/
+    $command = __DIR__.'/php-cs-fixer';
+} else {
+    // Global install
+    $command = 'php-cs-fixer';
+}
+
+passthru(sprintf(
+    "%s fix %s %s --using-cache=no --rules=%s",
+    $command,
     $paths,
     $options,
     escapeshellarg(json_encode($config['rules']))
-);
-passthru($command);
+));
