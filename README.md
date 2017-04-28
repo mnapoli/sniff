@@ -87,3 +87,12 @@ Below is an example that enables PSR-2 + Symfony's coding standard, along with a
 }
 ```
 
+## Credits
+
+This project is only a small wrapper above [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer), a huge thanks to the contributors of that tool.
+
+Sniff is heavily inspired from [Coke](https://github.com/M6Web/Coke), a nice wrapper for [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer).
+
+## License
+   
+Sniff is licensed under the [MIT license](LICENSE).
