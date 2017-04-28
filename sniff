@@ -67,4 +67,6 @@ passthru(sprintf(
     $paths,
     $options,
     escapeshellarg(json_encode($config['rules']))
-));
+), $returnStatus);
+
+exit($returnStatus);
