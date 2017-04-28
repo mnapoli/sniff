@@ -1,0 +1,13 @@
+{
+    "name": "mnapoli/sniff",
+    "description": "A simpler PHP code sniffer and fixer",
+    "license": "MIT",
+    "type": "library",
+    "bin": [
+        "sniff"
+    ],
+    "require": {
+        "php": ">=5.5",
+        "friendsofphp/php-cs-fixer": "^2.3"
+    }
+}

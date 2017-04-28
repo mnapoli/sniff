@@ -1,0 +1,9 @@
+{
+    "paths": [
+        "sniff"
+    ],
+    "rules": {
+        "@PSR2": true
+    },
+    "allow-risky": true
+}

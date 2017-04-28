@@ -1,0 +1,60 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+if ($argc < 2) {
+    echo 'Commands available: validate, diff, fix';
+    exit(1);
+}
+
+// Parse the command
+switch ($argv[1]) {
+    case 'validate':
+        $options = '--dry-run';
+        break;
+    case 'diff':
+        $options = '--dry-run --diff';
+        break;
+    case 'fix':
+        $options = '';
+        break;
+    default:
+        echo 'Unknown command. Commands available: validate, diff, fix';
+        exit(1);
+}
+
+if (!file_exists('.sniff.json')) {
+    echo 'The .sniff.json file was not found.';
+    exit(1);
+}
+
+// Load the config from ".sniff.json"
+$config = json_decode(file_get_contents('.sniff.json'), true);
+if (!$config) {
+    echo 'The .sniff.json file contains invalid JSON.';
+    exit(1);
+}
+
+// Config defaults
+$config['paths'] = isset($config['paths']) ? $config['paths'] : [];
+$config['rules'] = isset($config['rules']) ? $config['rules'] : [];
+$config['allow-risky'] = isset($config['allow-risky']) ? boolval($config['allow-risky']) : false;
+
+if (empty($config['paths'])) {
+    echo 'The .sniff.json file must contain a list of "paths".';
+    exit(1);
+}
+
+$paths = implode(' ', array_map('escapeshellarg', $config['paths']));
+
+if ($config['allow-risky']) {
+    $options .= ' --allow-risky=yes';
+}
+
+$command = sprintf(
+    "vendor/bin/php-cs-fixer fix %s %s --using-cache=no --rules=%s",
+    $paths,
+    $options,
+    escapeshellarg(json_encode($config['rules']))
+);
+passthru($command);
