@@ -53,9 +53,9 @@ if ($config['allow-risky']) {
 if (file_exists('vendor/bin/php-cs-fixer')) {
     // Installed in vendor sub-directory
     $command = 'vendor/bin/php-cs-fixer';
-} elseif (file_exists(__DIR__.'/php-cs-fixer')) {
+} elseif (file_exists(__DIR__.'/../../bin/php-cs-fixer')) {
     // When sniff is installed as a dependency, along with php-cs-fixer in vendor/bin/
-    $command = __DIR__.'/php-cs-fixer';
+    $command = __DIR__.'/../../bin/php-cs-fixer';
 } else {
     // Global install
     $command = 'php-cs-fixer';
