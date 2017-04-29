@@ -45,7 +45,7 @@ $ vendor/bin/sniff
 
 You can also install it globally with Composer to be able to call it with `sniff`:
 
-- `composer require -g mnapoli/sniff`
+- `composer global require mnapoli/sniff`
 - add the `~/.composer/bin` path to your `PATH`
 
 ## Configuration
