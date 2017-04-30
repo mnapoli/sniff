@@ -44,6 +44,16 @@ if (empty($config['paths'])) {
     exit(1);
 }
 
+// Validate paths
+foreach ($config['paths'] as $path) {
+    $path = realpath($path);
+    $currentPath = realpath(getcwd());
+    if (substr(realpath($path), 0, strlen($currentPath)) != $currentPath) {
+        echo 'The .sniff.json configuration file contains an invalid path.';
+        exit(1);
+    }
+}
+
 $paths = implode(' ', array_map('escapeshellarg', $config['paths']));
 
 if ($config['allow-risky']) {
@@ -56,16 +66,21 @@ if (file_exists('vendor/bin/php-cs-fixer')) {
 } elseif (file_exists(__DIR__.'/../../bin/php-cs-fixer')) {
     // When sniff is installed as a dependency, along with php-cs-fixer in vendor/bin/
     $command = __DIR__.'/../../bin/php-cs-fixer';
+} elseif (file_exists(__DIR__.'/vendor/bin/php-cs-fixer')) {
+    $command = __DIR__.'/vendor/bin/php-cs-fixer';
 } else {
     // Global install
     $command = 'php-cs-fixer';
 }
 
+$nullConfigFile = realpath(__DIR__ . '/php-cs-null-config.php');
+
 passthru(sprintf(
-    "%s fix %s %s --using-cache=no --rules=%s",
+    "%s fix %s %s --using-cache=no --config=%s --rules=%s",
     $command,
     $paths,
     $options,
+    escapeshellarg($nullConfigFile),
     escapeshellarg(json_encode($config['rules']))
 ), $returnStatus);
 
