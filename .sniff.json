@@ -1,6 +1,7 @@
 {
     "paths": [
-        "sniff"
+        "sniff",
+        "tests/sniff.spec.php"
     ],
     "rules": {
         "@PSR2": true

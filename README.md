@@ -87,6 +87,14 @@ Below is an example that enables PSR-2 + Symfony's coding standard, along with a
 }
 ```
 
+## Contributing
+
+To run the tests:
+
+```
+$ composer tests
+```
+
 ## Credits
 
 This project is only a small wrapper above [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer), a huge thanks to the contributors of that tool.

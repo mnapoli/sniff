@@ -9,5 +9,12 @@
     "require": {
         "php": ">=5.6",
         "friendsofphp/php-cs-fixer": "^2.3"
+    },
+    "require-dev": {
+        "peridot-php/peridot": "^1.19",
+        "webmozart/assert": "^1.2"
+    },
+    "scripts": {
+        "tests": "peridot tests"
     }
 }

@@ -1,0 +1,8 @@
+{
+    "paths": [
+        "/tmp"
+    ],
+    "rules": {
+        "@PSR2": true
+    }
+}
