@@ -2,6 +2,8 @@
 
 Simpler PHP code sniffer, built on top of [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer).
 
+**This project has been replaced by [Pretty](https://github.com/mnapoli/pretty)**
+
 [![Build Status](https://img.shields.io/travis/mnapoli/sniff/master.svg?style=flat-square)](https://travis-ci.org/mnapoli/sniff)
 
 ## Why?
